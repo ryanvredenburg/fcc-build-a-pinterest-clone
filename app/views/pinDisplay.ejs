@@ -1,0 +1,68 @@
+<style>
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+</style>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+<% if ( pins.length > 0 ){ %>
+  <div class="grid" >
+    <div class="grid-sizer"></div>
+    <% for (let i = 0; i < pins.length; i++){ %>
+      <div class="grid-item">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pins[i].quote %></h3>
+            </div>
+            <div class="panel-body">
+              <img src="<%= pins[i].image %>" class="img-thumbnail" onError="this.onerror=null;this.src='https://wallpapercave.com/wp/2mwIsiD.jpg';">
+              <% if ( user && pins[i].owner == user._id ){ %>
+                <a type="button" class="btn btn-danger" href='/deletePin/<%= pins[i]._id %>'>Delete</a>
+              <% } %>  
+          </div>
+          </div>
+    </div>
+    <% } %>
+  </div>
+<% } %>
+
+<script>
+// init Masonry
+var $grid = $('.grid').masonry({
+  itemSelector: '.grid-item',
+  percentPosition: true,
+  columnWidth: '.grid-sizer'
+});
+// layout Masonry after each image loads
+$grid.imagesLoaded().progress( function() {
+  $grid.masonry();
+});  
+  
+
+</script>
+
