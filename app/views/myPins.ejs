@@ -1,0 +1,17 @@
+<%include nav.ejs %>
+
+<% if (pins.length > 0) {%>
+  <h3>
+    your pins
+  </h3>
+  <%include pinDisplay.ejs %>
+<% } else { %>
+  <h3>
+    Looks like you don't have any pins yet. Would be awesome if you changed that. 
+  </h3>
+
+<% } %>
+
+<%include newPin.ejs %>
+
+

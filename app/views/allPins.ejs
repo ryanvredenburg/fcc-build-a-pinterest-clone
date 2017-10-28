@@ -1,0 +1,12 @@
+<%include nav.ejs %>
+
+<% if (pins.length > 0) {%>
+  <h3>
+    All Users Pins
+  </h3>
+  <%include pinDisplay.ejs %>
+<% } else { %>
+  <h3>
+    Looks like NOBODY has added any pins yet. Would be awesome if you changed that. 
+  </h3>
+<% } %>
